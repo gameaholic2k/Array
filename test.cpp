@@ -1,3 +1,27 @@
+/***********************************************************
+* Author:					David Nguyen
+* Date Created:				10/3/2015
+* Last Modification Date:	10/3/2015
+* Lab Number:				CST 211
+* Filename:					test.cpp
+*
+* Overview:
+*	This program will test the functionality for the Array
+*	class with different array test and exception handling.
+*
+* Input:
+*	N/A
+*
+* Output:
+*	The output of this program will show different Array tests
+************************************************************/
+
+
+
+
+
+
+
 #include  <iostream>
 #include  "Array.h"
 
@@ -22,14 +46,14 @@ void  zeroBasedArrayTest()
 	data[5] = 30;
 
 	cout << std::endl
-		<< "Zero based - "
-		<< data[0] << ' '
-		<< data[1] << ' '
-		<< data[2] << ' '
-		<< data[3] << ' '
-		<< data[4] << ' '
-		<< data[5] << ' '
-		<< std::endl;
+		 << "Zero based - "
+		 << data[0] << ' '
+		 << data[1] << ' '
+		 << data[2] << ' '
+		 << data[3] << ' '
+		 << data[4] << ' '
+		 << data[5] << ' '
+		 << std::endl;
 }
 
 //
@@ -88,7 +112,8 @@ void  negativeBasedArrayTest()
 
 
 //
-// Test the copy constructor for the Array class.
+// Test the copy constructor and the assignment operator
+// for the Array class.
 //
 
 void  copyTest()
@@ -145,6 +170,10 @@ void  copyTest()
 	cout << endl << endl;
 }
 
+
+//
+// Tests the getStartIndex and setStartIndex functions
+//
 void modifyArrayTest()
 {
 	const int  start_index = 7;
@@ -174,7 +203,6 @@ void modifyArrayTest()
 	data.setLength(5);
 
 	cout << std::endl << "Resized" << std::endl;
-	cout << std::endl << "Original" << std::endl;
 	for (int idx = data.getStartIndex(); idx < data.getLength() + data.getStartIndex(); ++idx)
 		cout << data[idx] << ' ';
 	cout << endl << endl;
@@ -186,17 +214,73 @@ void modifyArrayTest()
 
 }
 
+
+//
+// Negative array size test
+//
+void negativeArrayTest()
+{
+	Array<ELEMENT_TYPE>  data(-1);
+}
+
+//
+// Out of bounds test
+//
+void outofBoundsTest()
+{
+	Array<ELEMENT_TYPE>  data(5);
+	cout << data[10];
+}
+
+void exceptionReport(int e)
+{
+	switch (e)
+	{
+	case ERR_OUT_OF_BOUNDS:
+		cerr << "Error: Out of bounds." << endl;
+		break;
+
+	case ERR_MEM_ALLOC:
+		cerr << "Error: Memory allocation." << endl;
+		break;
+
+	case ERR_NEGATIVE_ARRAY_SIZE:
+		cerr << "Error: Bad Bounds." << endl;
+		break;
+	}
+}
 //
 // main() program
 //
 int  main()
 {
+
 	zeroBasedArrayTest();
 	positiveBasedArrayTest();
 	negativeBasedArrayTest();
 	copyTest();
 	modifyArrayTest();
 
+	//
+	// Exception test
+	//
+	try
+	{
+		negativeArrayTest();
+	}
+	catch (int e)
+	{
+		exceptionReport(e);
+	}
+
+	try
+	{
+		outofBoundsTest();
+	}
+	catch (int e)
+	{
+		exceptionReport(e);
+	}
 
 	return  0;
 }
