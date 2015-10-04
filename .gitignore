@@ -41,3 +41,24 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+Array.opensdf
+Array.sdf
+Array.v12.suo
+Debug/Array.exe
+Array.sln
+Array.vcxproj
+Debug/Array.log
+Array.vcxproj.filters
+Debug/Array.ilk
+Debug/Array.pdb
+Debug/Array.tlog/link.command.1.tlog
+Debug/refCounter.obj
+Debug/vc120.idb
+Debug/Array.tlog/Array.lastbuildstate
+Debug/Array.tlog/cl.command.1.tlog
+Debug/Array.tlog/CL.read.1.tlog
+Debug/Array.tlog/CL.write.1.tlog
+Debug/Array.tlog/link.read.1.tlog
+Debug/Array.tlog/link.write.1.tlog
+Debug/test.obj
+Debug/vc120.pdb
