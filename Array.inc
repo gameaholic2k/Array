@@ -27,14 +27,14 @@ m_start_index(start_index)
 	// Throws an exception of the length is less than 0
 	//
 	if (length < 0)
-		throw(ERR_NEGATIVE_ARRAY_SIZE);
+		throw(Exception("Error: Negative array size."));
 	m_array = new  T[length];
 
 	//
 	// Throws an exception if the memory allocation fails.
 	//
 	if (!m_array)
-		throw(ERR_MEM_ALLOC);
+		throw(Exception("Error: Failed to allocate memory."));
 }
 
 
@@ -99,7 +99,7 @@ template<class T>
 void Array<T>::setLength(int length)
 {
 	if (length < 0)
-		throw(ERR_NEGATIVE_ARRAY_SIZE);
+		throw(Exception("Error: Negative array size."));
 	T* tempArray = new T[length];
 	
 	//
@@ -128,7 +128,7 @@ template<class T>
 T &Array<T>::operator[](int index)
 {
 	if (index < m_start_index || index > LAST_INDEX)
-		throw(ERR_OUT_OF_BOUNDS);
+		throw(Exception("Error: Out of bounds."));
 	return m_array[index - m_start_index];
 }
 
@@ -141,6 +141,6 @@ template<class T>
 const T &Array<T>::operator[](int index) const
 {
 	if (index < m_start_index || index > LAST_INDEX)
-		throw(ERR_OUT_OF_BOUNDS);
+		throw(Exception("Error: Out of bounds."));
 	return m_array[index - m_start_index];
 }

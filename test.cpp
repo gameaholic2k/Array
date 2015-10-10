@@ -30,6 +30,7 @@ using  namespace  std;
 
 typedef  double  ELEMENT_TYPE;
 
+
 #define LAST_INDEX_VALUE data.getLength() + data.getStartIndex() - 1
 
 //
@@ -251,23 +252,6 @@ void outofBoundsTest()
 	cout << data[10];
 }
 
-void exceptionReport(int e)
-{
-	switch (e)
-	{
-	case ERR_OUT_OF_BOUNDS:
-		cerr << "Error: Out of bounds." << endl;
-		break;
-
-	case ERR_MEM_ALLOC:
-		cerr << "Error: Memory allocation." << endl;
-		break;
-
-	case ERR_NEGATIVE_ARRAY_SIZE:
-		cerr << "Error: Bad Bounds." << endl;
-		break;
-	}
-}
 //
 // main() program
 //
@@ -287,18 +271,18 @@ int  main()
 	{
 		negativeArrayTest();
 	}
-	catch (int e)
+	catch (Exception e)
 	{
-		exceptionReport(e);
+		cout << e << endl;
 	}
 
 	try
 	{
 		outofBoundsTest();
 	}
-	catch (int e)
+	catch (Exception e)
 	{
-		exceptionReport(e);
+		cout << e << endl;
 	}
 
 	return  0;

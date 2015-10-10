@@ -13,6 +13,35 @@
 Exception::Exception(char *msg) :
 m_msg(msg)
 {
-
 }
 
+Exception::Exception(const Exception &copy) :
+m_msg(copy.m_msg)
+{
+}
+
+Exception::~Exception()
+{
+}
+
+Exception &Exception::operator=(const Exception & rhs)
+{
+	if (this != &rhs)
+		setMessage(rhs.m_msg);
+	return *this;
+}
+
+
+void Exception::setMessage(char * msg)
+{
+	m_msg = msg;
+}
+
+
+//
+// Stream insertion
+//
+std::ostream  &operator<<(std::ostream  &os, const Exception  &rhs)
+{
+	return os << rhs.getMessage();
+}
