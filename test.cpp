@@ -120,6 +120,7 @@ void  copyTest()
 {
 	const int  start_index = 7;
 	const int  length = 10;
+	const int  last_index = start_index + length - 1;
 
 	Array<ELEMENT_TYPE>  data(length, start_index);
 
@@ -127,7 +128,7 @@ void  copyTest()
 		data[idx] = idx - start_index;
 
 	cout << std::endl << "Original" << std::endl;
-	for (int idx = data.getStartIndex(); idx < data.getLength() + data.getStartIndex(); ++idx)
+	for (int idx = data.getStartIndex(); idx <= last_index; ++idx)
 		cout << data[idx] << ' ';
 	cout << endl << endl;
 
@@ -137,12 +138,12 @@ void  copyTest()
 	Array<ELEMENT_TYPE>  cctor2(data);
 	
 	cout << std::endl << "cctor" << std::endl;
-	for (int idx = cctor.getStartIndex(); idx < cctor.getLength() + cctor.getStartIndex(); ++idx)
+	for (int idx = cctor.getStartIndex(); idx <= last_index; ++idx)
 		cout << cctor[idx] << ' ';
 	cout << endl << endl;
 
 	cout << std::endl << "cctor2" << std::endl;
-	for (int idx = cctor2.getStartIndex(); idx < cctor2.getLength() + cctor2.getStartIndex(); ++idx)
+	for (int idx = cctor2.getStartIndex(); idx <= last_index; ++idx)
 		cout << cctor2[idx] << ' ';
 	cout << endl << endl;
 
@@ -150,7 +151,7 @@ void  copyTest()
 	//Assignment operator test
 	Array<ELEMENT_TYPE> assignCopy = data;
 	cout << std::endl << "assignCopy" << std::endl;
-	for (int idx = assignCopy.getStartIndex(); idx < assignCopy.getLength() + assignCopy.getStartIndex(); ++idx)
+	for (int idx = assignCopy.getStartIndex(); idx <= last_index; ++idx)
 		cout << assignCopy[idx] << ' ';
 	cout << endl << endl;
 
@@ -158,14 +159,14 @@ void  copyTest()
 	Array<ELEMENT_TYPE>  other(1, 0);
 	other = data;
 	cout << std::endl << "other" << std::endl;
-	for (int idx = other.getStartIndex(); idx < other.getLength() + other.getStartIndex(); ++idx)
+	for (int idx = other.getStartIndex(); idx <= last_index; ++idx)
 		cout << other[idx] << ' ';
 	cout << endl << endl;
 
 	//Self assignment operator test
 	data = data;
 	cout << std::endl << "Original" << std::endl;
-	for (int idx = data.getStartIndex(); idx < data.getLength() + data.getStartIndex(); ++idx)
+	for (int idx = data.getStartIndex(); idx <= last_index; ++idx)
 		cout << data[idx] << ' ';
 	cout << endl << endl;
 }
@@ -184,7 +185,7 @@ void modifyArrayTest()
 		data[idx] = idx - start_index;
 
 	cout << std::endl << "Original" << std::endl;
-	for (int idx = data.getStartIndex(); idx < data.getLength() + data.getStartIndex(); ++idx)
+	for (int idx = data.getStartIndex(); idx <= PUBLIC_LAST_INDEX; ++idx)
 		cout << data[idx] << ' ';
 	cout << endl << endl;
 
@@ -199,18 +200,36 @@ void modifyArrayTest()
 
 	cout << "Original length: " << data.getLength() << endl;
 	cout << "Original last index value: " << data[LAST_INDEX_VALUE] << endl << endl;
-
+	
+	//
+	//set length to a greater value from original
+	//
 	data.setLength(5);
 
 	cout << std::endl << "Resized" << std::endl;
-	for (int idx = data.getStartIndex(); idx < data.getLength() + data.getStartIndex(); ++idx)
+	for (int idx = data.getStartIndex(); idx <= PUBLIC_LAST_INDEX; ++idx)
 		cout << data[idx] << ' ';
 	cout << endl << endl;
 
 	cout << "New length: " << data.getLength() << endl;
 	cout << "New last index value: " << data[LAST_INDEX_VALUE] << endl << endl;
 
+	//
+	//set length to a greater value from original
+	//
 
+	int tempIdx = LAST_INDEX_VALUE;
+	data.setLength(15);
+	for (tempIdx; tempIdx <= PUBLIC_LAST_INDEX; ++tempIdx)
+		data[tempIdx] = tempIdx;
+
+	cout << std::endl << "Resized" << std::endl;
+	for (int idx = data.getStartIndex(); idx <= PUBLIC_LAST_INDEX; ++idx)
+		cout << data[idx] << ' ';
+	cout << endl << endl;
+
+	cout << "New length: " << data.getLength() << endl;
+	cout << "New last index value: " << data[LAST_INDEX_VALUE] << endl << endl;
 
 }
 

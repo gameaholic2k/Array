@@ -13,6 +13,7 @@
 #include "Exception.h"
 
 #define LAST_INDEX m_start_index + m_length -1
+#define PUBLIC_LAST_INDEX data.getLength() + data.getStartIndex() - 1
 
 #ifndef  array_H
 #define  array_H

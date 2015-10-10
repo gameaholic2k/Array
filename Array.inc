@@ -100,13 +100,22 @@ void Array<T>::setLength(int length)
 {
 	if (length < 0)
 		throw(ERR_NEGATIVE_ARRAY_SIZE);
-
-
 	T* tempArray = new T[length];
-	m_length = length;
-	for (int idx = 0; idx < length; idx++)
+	
+	//
+	// Determines the buffer length by comparing which of the two
+	// is less than the other
+	//
+	int buff_length;
+	if (m_length < length)
+		buff_length = m_length;
+	else
+		buff_length = length;
+
+	for (int idx = 0; idx < buff_length; idx++)
 		tempArray[idx] = m_array[idx];
 	delete[] m_array;
+	m_length = length;
 	m_array = tempArray;
 
 }
